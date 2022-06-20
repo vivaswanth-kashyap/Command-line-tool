@@ -19,7 +19,6 @@ class FortyTwoWordsService {
   }
 
   async get(apiPath) {
-    console.log(config.apiHost + apiPath);
     return axios
       .get(config.apiHost + apiPath, {
         params: {
