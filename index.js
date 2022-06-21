@@ -49,9 +49,15 @@ switch (args[0]) {
                 break;
             case 2:
                 ans = await ob1.antonyms(randWord);
-                ans
-                ? console.log(ans[0])
-                : console.log(await ob1.synonyms(randWord)[0]);
+                // console.log('ans', ans)
+                if (ans != undefined) console.log(ans[0]);
+                else {
+                    let synonym = await ob1.synonyms(randWord);
+                    console.log(synonym[0]);
+                }
+                // ans != undefined
+                // ? console.log(ans[0], 'un')
+                // : console.log(await ob1.synonyms(randWord)[0], 'syn');
                 break;
             case 3:
                 ans = await ob1.definitions(randWord);
@@ -64,25 +70,49 @@ switch (args[0]) {
             score += 10;
             console.log(`your guess is correct ${ques} is correct\n`);
             let choice = await readLine( "do you want to continue? type 1 for yes, 0 for no\n" );
-            flag = choice
+            flag = parseInt(choice);
         } else {
+            let flag1 = 1;
+            do{
             let next = await readLine("1.try again 2.hint 3.skip\n");
-            switch (next) {
+            console.log(next);
+            switch (parseInt(next)) {
                 case 1:
                     score -= 2;
                     console.log(`try again, your score is ${score}\n`);
+                    let again = await readLine("guess the word again\n");
+                    if(again == randWord){
+                        score += 10;
+                        console.log(`correct answer your score is ${score}\n`);
+                    }else{
+                        score -= 2 ;
+                        console.log(`wrong answer , your score is ${score}`);
+                    }
                     continue;
                 case 2:
-                    score -= 4;
+                    score -= 3;
+                    ans = await ob1.synonyms(randWord);
                     console.log(`your hint is ${ans[x + 1]}\n`);
+                    let again1 = await readLine("guess the word again\n");
+                    if(again1 == randWord){
+                        score += 10;
+                        console.log(`correct answer your score is ${score}\n`);
+                    }else{
+                        score -= 2 ;
+                        console.log(`wrong answer , your score is ${score}`);
+                    }                    
                     console.log(score);
                     continue;
                 case 3:
+                    score -= 4;
                     console.log(`your score is ${score}\n`);
+                    flag1 = 0;
                     break;
                 }
+            }while(flag1);
             }
         } while (flag);
+        console.log("Thankyou for playing :)");
     break;
 
     default:

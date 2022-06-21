@@ -35,7 +35,9 @@ class Dictionary {
       return undefined;
     } else {
       let synonyms = res.filter((x) => x.relationshipType == "synonym")[0];
+      // console.log('syno', synonyms);
       if (synonyms) {
+        // console.log(synonyms.words)
         return synonyms.words;
       } else {
         return undefined;
@@ -53,7 +55,7 @@ class Dictionary {
       if (antonyms) {
         return antonyms.words;
       } else {
-        console.log(`No antonyms available for the word ${word}.\n`);
+        console.log(`No antonyms available for the word. ${word}\n`);
         return undefined;
       }
     }
