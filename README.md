@@ -1,16 +1,16 @@
 # Command-line-tool
 
-to find the definitions of a word:
+to find the definitions of a word
   enter:
   
     node index.js def <word>
   
-to find synonyms of a word:
+to find synonyms of a word
   enter:
   
      node index.js syn <word>
 
-to find antonyms of a word:
+to find antonyms of a word
   enter:
   
      node index.js ant <word>
